@@ -34,13 +34,16 @@
     // 设置滑块部分图片
     [self setThumbImage:image forState:UIControlStateNormal];
 
-    // 计算提示视图与Slider位置
-    float numerator = value - self.minimumValue;
-    float denominator = self.maximumValue - self.minimumValue;
-    CGFloat x = numerator / denominator;
-    [[TipsView instance] showText:text
-                       targetView:self
-                             andX:(x * (self.bounds.size.width - 15*2) - 56/2 + 15)];
+    // 不起用动画的时候提示，这样好点
+    if (!animated) {
+        // 计算提示视图与Slider位置
+        float numerator = value - self.minimumValue;
+        float denominator = self.maximumValue - self.minimumValue;
+        CGFloat x = numerator / denominator;
+        [[TipsView instance] showText:text
+                           targetView:self
+                                 andX:(x * (self.bounds.size.width - 15*2) - 56/2 + 15)];
+    }
 }
 
 
